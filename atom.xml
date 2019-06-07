@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://njuwuyuxin.github.io/"/>
   <updated>2019-06-07T07:54:30.207Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://njuwuyuxin.github.io/</id>
   
   <author>
     <name>吴雨昕</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Git快速上手</title>
-    <link href="http://yoursite.com/2019/04/18/git%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/"/>
-    <id>http://yoursite.com/2019/04/18/git快速上手/</id>
+    <link href="https://njuwuyuxin.github.io/2019/04/18/git%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/"/>
+    <id>https://njuwuyuxin.github.io/2019/04/18/git快速上手/</id>
     <published>2019-04-18T06:54:47.000Z</published>
     <updated>2019-06-07T07:54:30.207Z</updated>
     
@@ -34,21 +34,21 @@
     
     </summary>
     
-      <category term="git学习" scheme="http://yoursite.com/categories/git%E5%AD%A6%E4%B9%A0/"/>
+      <category term="git学习" scheme="https://njuwuyuxin.github.io/categories/git%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
+      <category term="git" scheme="https://njuwuyuxin.github.io/tags/git/"/>
     
-      <category term="版本控制" scheme="http://yoursite.com/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+      <category term="版本控制" scheme="https://njuwuyuxin.github.io/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
     
-      <category term="常用指令" scheme="http://yoursite.com/tags/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"/>
+      <category term="常用指令" scheme="https://njuwuyuxin.github.io/tags/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/"/>
     
   </entry>
   
   <entry>
     <title>用Hexo和Github pages快速搭建个人博客</title>
-    <link href="http://yoursite.com/2019/04/09/%E7%94%A8Hexo%E5%92%8CGithub%20pages%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://yoursite.com/2019/04/09/用Hexo和Github pages快速搭建个人博客/</id>
+    <link href="https://njuwuyuxin.github.io/2019/04/09/%E7%94%A8Hexo%E5%92%8CGithub%20pages%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://njuwuyuxin.github.io/2019/04/09/用Hexo和Github pages快速搭建个人博客/</id>
     <published>2019-04-09T12:07:32.000Z</published>
     <updated>2019-06-07T07:54:30.208Z</updated>
     
@@ -64,14 +64,14 @@
     
     </summary>
     
-      <category term="环境搭建" scheme="http://yoursite.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+      <category term="环境搭建" scheme="https://njuwuyuxin.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
     
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+      <category term="hexo" scheme="https://njuwuyuxin.github.io/tags/hexo/"/>
     
-      <category term="node" scheme="http://yoursite.com/tags/node/"/>
+      <category term="node" scheme="https://njuwuyuxin.github.io/tags/node/"/>
     
-      <category term="指南" scheme="http://yoursite.com/tags/%E6%8C%87%E5%8D%97/"/>
+      <category term="指南" scheme="https://njuwuyuxin.github.io/tags/%E6%8C%87%E5%8D%97/"/>
     
   </entry>
   
