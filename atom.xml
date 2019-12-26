@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://njuwuyuxin.github.io/"/>
-  <updated>2019-06-07T07:54:30.207Z</updated>
+  <updated>2019-12-26T09:26:02.110Z</updated>
   <id>https://njuwuyuxin.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从零搭建教务抢课系统（一）</title>
+    <link href="https://njuwuyuxin.github.io/2019/12/26/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://njuwuyuxin.github.io/2019/12/26/从零搭建教务抢课系统（一）/</id>
+    <published>2019-12-26T06:52:16.000Z</published>
+    <updated>2019-12-26T09:26:02.110Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>（一）核心功能：模拟登陆<br>（二）获取教务网选课列表<br>（三）循环选课<br>（四）断线重连</p><a id="more"></a><h6 id="Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><a href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber" class="headerlink" title="Github链接： https://github.com/njuwuyuxin/CourseGrabber"></a>Github链接： <a href="https://github.com/njuwuyuxin/CourseGrabber" target="_blank" rel="noopener">https://github.com/njuwuyuxin/CourseGrabber</a></h6><h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>响应群里学弟学妹号召，心血来潮想做一个南大教务网的抢课系统。在仔细研究了一下教务平台的js代码之后，发现几乎没有什么防护措施，于是便开始着手尝试起来。</p><p>抢课系统的主要思路无非就是以下几步：</p><ol><li>模拟教务平台的网页登录，获取session</li><li>登入平台后拉取各个课程列表</li><li>找到对应课程编号，构造选课请求体，循环发送</li></ol><p>为了方便调试检验，还使用了wireshark进行简单抓包（可省略），有需要的小伙伴可以自行下载</p><h3 id="二、模拟登陆"><a href="#二、模拟登陆" class="headerlink" title="二、模拟登陆"></a>二、模拟登陆</h3><p>首先进入教务网登陆界面，尝试一次普通登录<br><img src="https://s2.ax1x.com/2019/12/26/lAPbLT.png" alt="登录请求体.png"><br>可以发现登录的请求体主要由四个表项组成，returnUrl暂无具体含义，默认为null，其余均为用户提交表单。<br>这里唯一比较棘手的一点是验证码的获取。</p><h4 id="验证码获取"><a href="#验证码获取" class="headerlink" title="验证码获取"></a>验证码获取</h4><p>南大教务平台的验证码是通过向后端jsp请求获得。因此在代码里我们同样用模拟浏览器的方式进行请求。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#首先创建一个session</span><br><span class="line">session &#x3D; requests.session()</span><br><span class="line"></span><br><span class="line">#取得验证码图片</span><br><span class="line">now_time &#x3D; str(int(time.time()))</span><br><span class="line">pic_url &#x3D; host + &#39;ValidateCode.jsp&#39;</span><br><span class="line">pic &#x3D; session.get(pic_url).content</span><br><span class="line">filename &#x3D; &#39;&#39; + now_time + &#39;.jpg&#39;  </span><br><span class="line">with open(filename, &#39;wb&#39;) as f:</span><br><span class="line">    f.write(pic)</span><br></pre></td></tr></table></figure><p>这里首先创建了一个session，确保获取验证码和登录请求为同一个session，向对应jsp请求，将请求获得的图片保存在本地。<br>之后尝试使用了ocr进行验证码的自动识别，由于验证码干扰严重，OCR无法识别，因而放弃</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#尝试使用OCR自动识别验证码，但是由于验证码干扰较多，不能正确识别，因此采用手动输入方式</span><br><span class="line"># img &#x3D; Image.open(filename)</span><br><span class="line"># img&#x3D;img.convert(&#39;L&#39;)</span><br><span class="line"># vcode &#x3D; pytesseract.image_to_string(img)  # 使用ocr技术将图片中的验证码读取出来</span><br><span class="line"># time.sleep(0.3) </span><br><span class="line"># print(vcode)</span><br></pre></td></tr></table></figure><p>OCR无法自动识别，那么我们只能采用手动输入验证码的方式，每次登陆时根据获取到本地的验证码进行输入，登陆后自动删除临时图片。<br>同时发现验证码大约有100秒有效时间，因此需及时输入，否则验证码过期需要重新获取</p><h4 id="登录请求体构造"><a href="#登录请求体构造" class="headerlink" title="登录请求体构造"></a>登录请求体构造</h4><p>之后我们就可以构造登录请求体，这里为了方便测试，可以选择性读取存储用户信息的配置文件，也可以控制台进行输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">login_data&#x3D;&#123;&#125;</span><br><span class="line">files &#x3D; os.listdir()</span><br><span class="line">if &quot;user.cfg&quot; in files:</span><br><span class="line">    with open(&quot;user.cfg&quot;,&#39;r&#39;) as f:</span><br><span class="line">        for line in f:</span><br><span class="line">            items &#x3D; line.split(&quot;:&quot;)</span><br><span class="line">            items[1]&#x3D;items[1].replace(&#39;\n&#39;,&#39;&#39;).replace(&#39;\r&#39;,&#39;&#39;)</span><br><span class="line">            login_data[items[0]]&#x3D;items[1]</span><br><span class="line">else:</span><br><span class="line">    print(&quot;请输入用户名&quot;)</span><br><span class="line">    login_data[&#39;userName&#39;]&#x3D;input()</span><br><span class="line">    print(&quot;请输入密码&quot;)</span><br><span class="line">    login_data[&#39;password&#39;]&#x3D;input()</span><br><span class="line">        </span><br><span class="line">login_data[&#39;retrunURL&#39;]&#x3D;&quot;null&quot;</span><br><span class="line">print(&quot;请输入验证码(Please enter the ValidateCode)&quot;)</span><br><span class="line">vcode&#x3D;input()</span><br><span class="line">os.remove(filename) #输入完验证码后自动删除本地图片   </span><br><span class="line">login_data[&#39;ValidateCode&#39;]&#x3D;vcode</span><br></pre></td></tr></table></figure><h4 id="发送登录请求"><a href="#发送登录请求" class="headerlink" title="发送登录请求"></a>发送登录请求</h4><p>构造好请求体之后，我们将对应post请求发送到后端端口即可，这里由于无论登陆成功或失败，都会返回200表示请求成功，并不代表登陆成功。而返回的response分别对应错误页面的html和成功页面的html，因此这里简单对response长度进行判断来判断是否登陆成功。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#发送登录请求</span><br><span class="line">response &#x3D; session.post(host+&quot;login.do&quot;,login_data)</span><br><span class="line">if response.content.__len__() &gt; 1100:</span><br><span class="line">    print(&quot;登陆成功!&quot;)</span><br><span class="line">    return True</span><br><span class="line">else:</span><br><span class="line">    print(&quot;登录失败，请检查账号密码及验证码&quot;)</span><br><span class="line">    return False</span><br></pre></td></tr></table></figure><p>输入完用户信息后，成功登录后，wireshark抓包可以看到对应数据包<br><img src="https://s2.ax1x.com/2019/12/26/lAEzMn.png" alt="lAEzMn.png"><br>打印请求体后，可以发现正是教务平台登陆成功后的主页的html，至此，抢课系统的核心登录部分已经完成。之后可以解析HTML获得相关信息（类似爬虫），或发送选课请求等均可。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h3&gt;&lt;p&gt;（一）核心功能：模拟登陆&lt;br&gt;（二）获取教务网选课列表&lt;br&gt;（三）循环选课&lt;br&gt;（四）断线重连&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="简单尝试" scheme="https://njuwuyuxin.github.io/categories/%E7%AE%80%E5%8D%95%E5%B0%9D%E8%AF%95/"/>
+    
+    
+      <category term="爬虫" scheme="https://njuwuyuxin.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="抢课系统" scheme="https://njuwuyuxin.github.io/tags/%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nodejs+express框架搭建简单后端服务</title>
+    <link href="https://njuwuyuxin.github.io/2019/06/07/nodejs-express%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1/"/>
+    <id>https://njuwuyuxin.github.io/2019/06/07/nodejs-express框架搭建简单后端服务/</id>
+    <published>2019-06-07T08:51:40.000Z</published>
+    <updated>2019-12-26T08:57:53.499Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Node安装"><a href="#Node安装" class="headerlink" title="Node安装"></a>Node安装</h2><p>由于后端服务通常部署在linux服务器上，因此简单说下linux环境下node的安装。 可以选择去官网下载编译好的二进制文件，软链接到环境目录下。也可以使用apt工具直接安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install node</span><br></pre></td></tr></table></figure><h3 id="Express框架"><a href="#Express框架" class="headerlink" title="Express框架"></a>Express框架</h3><p>express是一个功能十分强大的框架，可以同时兼顾前后端开发。但由于这次只是想用express实现后端服务，因此不需要express提供的前端开发模板相关功能。所以只是在项目中引入了express模块</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express</span><br></pre></td></tr></table></figure><p>之后就可以在项目中通过require的方式使用express模块</p><h4 id="Express的使用"><a href="#Express的使用" class="headerlink" title="Express的使用"></a>Express的使用</h4><p>首先需要在需要的文件中引入express模块</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var express &#x3D; require(&#39;epxress&#39;);</span><br><span class="line">var app &#x3D; express();</span><br></pre></td></tr></table></figure><p>之后需要创建一个http服务器，但是由于我的网站而言，需要提供https服务，因此创建了一个https服务器</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var httpsServer &#x3D; https.createServer(options, app);</span><br><span class="line">httpsServer.listen(parseInt(config.port),function()&#123;</span><br><span class="line">    console.log(&quot;Https server is running on: https:&#x2F;&#x2F;localhost:&quot;+config.port);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>创建https服务器时需要一个额外参数option，用来指定服务器所需证书的路径，只有证书有效，才能创建https服务。<br>至于端口号，可以自行指定，由于网站前端运行在默认443端口，因此选择不冲突的端口即可。</p><p>创建好服务器之后，我们就可以用app实例去监听对应的请求。<br>express框架为我们实现了路由功能，因此可以很方便的通过路径来区分各种请求。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.get(&#39;&#x2F;api&#x2F;activities&#39;,newsApi.getActivities);</span><br><span class="line">app.get(&#39;&#x2F;api&#x2F;activityCards&#39;,newsApi.getActivityCards);</span><br><span class="line">app.post(&#39;&#x2F;api&#x2F;reviewCards&#39;,newsApi.getReviewCards);</span><br><span class="line"></span><br><span class="line">function getActivities(req, res)&#123;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">    res.send(&#39;...&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>通过调用app的get和post方法，我们可以处理get和post请求，第一个参数即为路由的路径，第二个参数为一个函数闭包，用来处理对应的请求。该闭包会接受两个参数req和res，分别对应请求体和返回的内容</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Node安装&quot;&gt;&lt;a href=&quot;#Node安装&quot; class=&quot;headerlink&quot; title=&quot;Node安装&quot;&gt;&lt;/a&gt;Node安装&lt;/h2&gt;&lt;p&gt;由于后端服务通常部署在linux服务器上，因此简单说下linux环境下node的安装。 可以选择去官网下载编
+      
+    
+    </summary>
+    
+      <category term="后端学习" scheme="https://njuwuyuxin.github.io/categories/%E5%90%8E%E7%AB%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="nodejs" scheme="https://njuwuyuxin.github.io/tags/nodejs/"/>
+    
+      <category term="express" scheme="https://njuwuyuxin.github.io/tags/express/"/>
+    
+      <category term="后端" scheme="https://njuwuyuxin.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>Git快速上手</title>

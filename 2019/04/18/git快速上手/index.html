@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="git,版本控制,常用指令," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="Mind Walker" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言git作为一个先进的版本管理工具，已经被广泛应用在大量项目中。近来发现了一个非常不错的git学习网站，虽然比较基础，但是可视化的界面能够帮助新人快速理解git每项指令的功能，同时也可以一定程度上的查漏补缺。网站地址：https:&#x2F;&#x2F;learngitbranching.js.org&#x2F;而本文也记录了一些常用的git指令和使用技巧 常用git指令新建仓库在当前目录初始化一个git仓库git init">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git快速上手">
+<meta property="og:url" content="https://njuwuyuxin.github.io/2019/04/18/git%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/index.html">
+<meta property="og:site_name" content="Mind Walker">
+<meta property="og:description" content="前言git作为一个先进的版本管理工具，已经被广泛应用在大量项目中。近来发现了一个非常不错的git学习网站，虽然比较基础，但是可视化的界面能够帮助新人快速理解git每项指令的功能，同时也可以一定程度上的查漏补缺。网站地址：https:&#x2F;&#x2F;learngitbranching.js.org&#x2F;而本文也记录了一些常用的git指令和使用技巧 常用git指令新建仓库在当前目录初始化一个git仓库git init">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-04-18T06:54:47.000Z">
+<meta property="article:modified_time" content="2019-06-07T07:54:30.207Z">
+<meta property="article:author" content="吴雨昕">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="版本控制">
+<meta property="article:tag" content="常用指令">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://njuwuyuxin.github.io/2019/04/18/git快速上手/"/>
+
+
+
+
+
+  <title>Git快速上手 | Mind Walker</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mind Walker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2019/04/18/git%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴雨昕">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Walker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git快速上手</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T14:54:47+08:00">
+                2019-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">git学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>git作为一个先进的版本管理工具，已经被广泛应用在大量项目中。近来发现了一个非常不错的git学习网站，虽然比较基础，但是可视化的界面能够帮助新人快速理解git每项指令的功能，同时也可以一定程度上的查漏补缺。<br>网站地址：<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a><br>而本文也记录了一些常用的git指令和使用技巧</p>
+<h2 id="常用git指令"><a href="#常用git指令" class="headerlink" title="常用git指令"></a>常用git指令</h2><h3 id="新建仓库"><a href="#新建仓库" class="headerlink" title="新建仓库"></a>新建仓库</h3><p>在当前目录初始化一个git仓库<br><code>git init</code><br>新建一个目录，初始化一个git仓库<br><code>git init [projectName]</code><br>用于从远程仓库进行克隆，一般可以选择通过https或者ssh方式<br><code>git clone [url]</code> </p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>对于刚安装git的新人，一般需要配置邮箱和用户名，建议使用全局方式配置<br><code>git conifg [--global] user.name &quot;[username]&quot;</code><br><code>git conifg [--global] user.email &quot;[email]&quot;</code><br>可以查看当前的git配置<br><code>git config --list</code><br>可以直接编辑git配置文件，之前通过命令行配置的在此也可以看到<br><code>git config -e [--global]</code> </p>
+<h3 id="增加、删除文件"><a href="#增加、删除文件" class="headerlink" title="增加、删除文件"></a>增加、删除文件</h3><p>这里需要简单介绍一下git中工作区和暂存区的概念</p>
+<ul>
+<li>工作区可以简单理解为你在当前仓库的种种改动，git可以检测到但是并未将之准备为下次提交的内容。需要用户将之添加到暂存区。</li>
+<li>暂存区可以简单理解为，下次执行提交中会被提交上去的文件。</li>
+<li>整个工作流为： 你修改了某个文件 -&gt; 该文件变为工作区文件 -&gt; 你添加该文件进入暂存区 -&gt; 提交暂存区文件，该文件被提交</li>
+</ul>
+<p>添加指定文件到暂存区<br><code>git add [file1] [file2] ...</code><br>添加指定目录到暂存区（包含该目录下所有文件）<br><code>git add [dir]</code><br>添加当前目录下所有文件到暂存区<br><code>git add .</code><br>删除工作区文件，并将“删除”这个操作放入暂存区<br><code>git rm [file1] [file2] ...</code><br>停止追踪文件，但是该文件会保留在工作区，类似gitignore的作用<br><code>git rm --cached [file]</code><br>改名文件，并将“改名”这个操作放入暂存区<br><code>git mv [origin-name] [target-name]</code></p>
+<h3 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h3><p>把暂存区内容提交到仓库， 最常用的提交指令<br><code>git commit -m &quot;message&quot;</code><br>提交暂存区中的指定文件到仓库<br><code>git commit [file1] [file2] ... -m &quot;message&quot;</code><br>直接将工作区自从上次commit之后的变化，提交到仓库（跳过暂存区）<br><code>git commit -a</code><br>使用一次新的commit，替代上一次提交,常用于简单修复<br>如果代码没有任何新变化，则用来改写上一次commit的提交信息<br><code>git commit --amend -m [message]</code></p>
+<h3 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h3><p>git中的分支是一个非常强大的功能，新建、删除、切换分支速度极快，可以多多使用</p>
+<p>列出所有本地分支<br><code>git branch</code><br>列出所有远程分支<br><code>git branch -r</code><br>列出所有本地和远程分支<br><code>git branch -a</code><br>新建一个分支，并且留在当前分支<br><code>git branch [branch-name]</code><br>新建一个分支，并切换到新的分支上<br><code>git checkout -b [branch-name]</code><br>从某一个commit记录为起点，新建一个分支；其中commit中填入commit的hash或者tag（如果有标签）（下同）<br><code>git branch [branch-name] [commit]</code><br>新建一个分支，并于远程的一个分支建立追踪关系<br><code>git branch --track [branch-name] [remote-branch]</code><br>切换分支<br><code>git checkout [branch-name]</code><br>合并指定分支到当前分支<br><code>git merge [branch-name]</code><br>合并指定分支到当前分支，并生成线性的记录<br><code>git rebase [branch-name]</code><br>交互式的rebase<br><code>git rebase [branch] -i</code><br>选择某一次提交（任意分支上的），合并到当前分支<br><code>git cherry-pick [commit]</code><br>删除分支<br><code>git branch -d [branch-name]</code><br>删除远程分支<br><code>git branch -dr [origin/branch]</code><br><code>git push origin --delete [branch-name]</code></p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><p>标签可以用来给某一次提交添加一个可以追踪的标记，该标记不受分支影响，不会变化，可以在任何情况下被追踪。对于某一次重大提交，常常可以用标签予以标记（如某一次版本发布）</p>
+<p>列出所有tag<br><code>git tag</code><br>在当前的commit上新建一个标签<br><code>git tag [tag-name]</code><br>给指定的commit上新建一个标签<br><code>git tag [tag-name] [commit]</code><br>删除本地的一个标签<br><code>git tag -d [tag-name]</code><br>删除远程的一个标签<br><code>git push origin :refs/tags/[tag-name]</code><br>查看某个标签对应的提交信息<br><code>git show [tag-name]</code><br>提交指定tag, remote指远程仓库的名字，一般为origin<br><code>git push [remote] [tag]</code><br>提交所有tag<br><code>git push [remote] --tags</code><br>以某个标签指定的commit为基点，新建一个分支<br><code>git branch [branch-name] [tag-name]</code></p>
+<h3 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h3><p>显示有变更的文件<br><code>git status</code><br>显示当前分支的版本历史<br><code>git log</code><br>显示commit历史，以及每次commit发生变化的文件<br><code>git log --stat</code><br>显示指定文件的每一次改动<br><code>git log -p [file]</code><br>显示指定文件是什么时间被什么人修改的<br><code>git blame [file]</code><br>显示暂存区与工作区的差异<br><code>git diff</code><br>显示暂存区与上一次commit之间的差异 （可指定文件）<br><code>git diff --cached [file]</code><br>显示工作区与当前分支最新commit之间的差异<br><code>git diff HEAD</code><br>显示你今天写了多少行代码<br><code>git diff --shortstat &quot;@{0 day ago}&quot;</code><br>显示当前分支最近的几次提交记录（常用来进行恢复）<br><code>git reflog</code></p>
+<h3 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h3><p>下载远程仓库的所有变动<br><code>git fetch [remote]</code><br>显示所有远程仓库<br><code>git remote -v</code><br>显示某个远程仓库的信息<br><code>git remote show [remote]</code><br>新增一个远程仓库，并命名<br><code>git remote add [name] [url]</code><br>拉取远程仓库的变化，并与本地分支合并<br><code>git pull [remote] [branch]</code><br>上传本地分支到远程仓库<br><code>git push [remote] [branch]</code><br>强行推送当前分支到远程仓库，即使有冲突<br><code>git push [remote] --force</code><br>推送所有分支到远程仓库<br><code>git push [remote] --all</code></p>
+<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>恢复暂存区的指定文件到工作区<br><code>git checkout [file]</code><br>恢复某个commit的指定文件到暂存区与工作区<br><code>git checkout [commit] [file]</code><br>恢复暂存区的所有文件到工作区<br><code>git checkout .</code><br>重置暂存区的指定文件，与上一次commit保持一致，但工作区不变<br><code>git reset [file]</code><br>重置工作区与暂存区，与上一次commit保持一致<br><code>git reset --hard</code><br>重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变<br><code>git reset [commit]</code><br>重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致<br><code>git reset --hard [commit]</code><br>新建一个commit，用来撤销指定commit<br>后者的所有变化都将被前者抵消，并且应用到当前分支<br>常用来对远程仓库进行恢复<br><code>git revert [commit]</code><br>暂时将未提交的变化移除，稍后再移入<br><code>git stash</code><br><code>git stash pop</code></p>
+<p>关于git reset指令，其实有 –soft –hard –mixed三种参数，默认为 –mixed参数。<br>具体详细用法可以参考这篇文章 <a href="https://segmentfault.com/a/1190000009658888" target="_blank" rel="noopener">git reset详解</a></p>
+<h3 id="HEAD移动"><a href="#HEAD移动" class="headerlink" title="HEAD移动"></a>HEAD移动</h3><p>HEAD在git中是一个非常重要的概念，因此在这里把这部分单独列出来。<br>HEAD是git中用来标记当前位置的一个指针。<br>形象的说法就是：你现在在哪，HEAD就指向哪，因为HEAD，git才知道你在哪。</p>
+<p>一般情况下，HEAD指向当前分支（上最近的提交），但是在有些时候，我们可以让HEAD指向某一次具体的提交，这也叫做分离HEAD。比如创建分支时，如果不指定commit，那么会在当前HEAD的位置创建分支。</p>
+<p>移动HEAD的方法是使用checkout指令，指定一个commid的hash值进行绝对定位<br><code>git checkout [commit-id]</code><br>我们也可以使用相对定位，以当前HEAD或分支名等可以追踪位置的标记为基准。 ^代表当前位置的前一个提交<br><code>git checkout HEAD^</code><br><code>git checkout master^</code><br>我们也可以用 ~[number] 来一次移动多次提交<br><code>git checkout HEAD~3</code><br><code>git checkout master~5</code></p>
+<p>关于HEAD的更多用法可以进一步去搜集资料</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>以上仅仅为git 入门常用的一些指令，熟练之后可以应对一般git的使用场景。<br>在这里依然十分推荐<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a>进行实际操作一次，相信对git的使用有很大帮助。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" rel="tag"># 版本控制</a>
+          
+            <a href="/tags/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" rel="tag"># 常用指令</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/09/%E7%94%A8Hexo%E5%92%8CGithub%20pages%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="用Hexo和Github pages快速搭建个人博客">
+                <i class="fa fa-chevron-left"></i> 用Hexo和Github pages快速搭建个人博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/07/nodejs-express%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1/" rel="prev" title="nodejs+express框架搭建简单后端服务">
+                nodejs+express框架搭建简单后端服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzY0OC8yMDE4Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="吴雨昕" />
+            
+              <p class="site-author-name" itemprop="name">吴雨昕</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/njuwuyuxin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:nju_wuyuxin@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用git指令"><span class="nav-number">2.</span> <span class="nav-text">常用git指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建仓库"><span class="nav-number">2.1.</span> <span class="nav-text">新建仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置"><span class="nav-number">2.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加、删除文件"><span class="nav-number">2.3.</span> <span class="nav-text">增加、删除文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码提交"><span class="nav-number">2.4.</span> <span class="nav-text">代码提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支操作"><span class="nav-number">2.5.</span> <span class="nav-text">分支操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">2.6.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看信息"><span class="nav-number">2.7.</span> <span class="nav-text">查看信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程同步"><span class="nav-number">2.8.</span> <span class="nav-text">远程同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#撤销"><span class="nav-number">2.9.</span> <span class="nav-text">撤销</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HEAD移动"><span class="nav-number">2.10.</span> <span class="nav-text">HEAD移动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴雨昕</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
