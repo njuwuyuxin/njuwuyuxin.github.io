@@ -379,7 +379,7 @@
 <p>关于git reset指令，其实有 –soft –hard –mixed三种参数，默认为 –mixed参数。<br>具体详细用法可以参考这篇文章 <a href="https://segmentfault.com/a/1190000009658888" target="_blank" rel="noopener">git reset详解</a></p>
 <h3 id="HEAD移动"><a href="#HEAD移动" class="headerlink" title="HEAD移动"></a>HEAD移动</h3><p>HEAD在git中是一个非常重要的概念，因此在这里把这部分单独列出来。<br>HEAD是git中用来标记当前位置的一个指针。<br>形象的说法就是：你现在在哪，HEAD就指向哪，因为HEAD，git才知道你在哪。</p>
 <p>一般情况下，HEAD指向当前分支（上最近的提交），但是在有些时候，我们可以让HEAD指向某一次具体的提交，这也叫做分离HEAD。比如创建分支时，如果不指定commit，那么会在当前HEAD的位置创建分支。</p>
-<p>移动HEAD的方法是使用checkout指令，指定一个commid的hash值进行绝对定位<br><code>git checkout [commit-id]</code><br>我们也可以使用相对定位，以当前HEAD或分支名等可以追踪位置的标记为基准。 ^代表当前位置的前一个提交<br><code>git checkout HEAD^</code><br><code>git checkout master^</code><br>我们也可以用 ~[number] 来一次移动多次提交<br><code>git checkout HEAD~3</code><br><code>git checkout master~5</code></p>
+<p>移动HEAD的方法是使用checkout指令，指定一个commid的hash值进行绝对定位<br><code>git checkout [commit-id]</code><br>我们也可以使用相对定位，以当前HEAD或分支名等可以追踪位置的标记为基准。 ^代表当前位置的前一个提交<br><code>git checkout HEAD^</code><br><code>git checkout master^</code><br>我们也可以用 <del>[number] 来一次移动多次提交<br>`git checkout HEAD</del>3<code></code>git checkout master~5`</p>
 <p>关于HEAD的更多用法可以进一步去搜集资料</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>以上仅仅为git 入门常用的一些指令，熟练之后可以应对一般git的使用场景。<br>在这里依然十分推荐<a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a>进行实际操作一次，相信对git的使用有很大帮助。</p>
 
