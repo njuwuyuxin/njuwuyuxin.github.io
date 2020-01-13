@@ -91,7 +91,7 @@
 <meta property="og:description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber使用cookie模拟登录在成功实现了基本登陆后，为了方便使用，这里尝试使用cookie进行登录 首先我们在创建session时，初始cookie为空，可以打印进行查看 12s">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-27T12:56:17.000Z">
-<meta property="article:modified_time" content="2020-01-13T08:32:50.074Z">
+<meta property="article:modified_time" content="2020-01-13T10:44:35.767Z">
 <meta property="article:author" content="吴雨昕">
 <meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="抢课系统">
@@ -359,7 +359,7 @@
 
       
         <hr>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p><a href="https://njuwuyuxin.github.io/2019/12/26/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/">（一）核心功能：模拟登陆</a><br><a href="https://njuwuyuxin.github.io/2019/12/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/">（二）使用Cookie进行模拟登录</a><br><a href="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/">（三）获取教务网选课列表</a><br><a href="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/">（四）循环选课</a><br>（五）断线重连</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p><a href="https://njuwuyuxin.github.io/2019/12/26/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/">（一）核心功能：模拟登陆</a><br><a href="https://njuwuyuxin.github.io/2019/12/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/">（二）使用Cookie进行模拟登录</a><br><a href="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/">（三）获取教务网选课列表</a><br><a href="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/">（四）循环选课</a><br><a href="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/">（五）断线重连</a></p>
 <h6 id="Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><a href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber" class="headerlink" title="Github链接： https://github.com/njuwuyuxin/CourseGrabber"></a>Github链接： <a href="https://github.com/njuwuyuxin/CourseGrabber" target="_blank" rel="noopener">https://github.com/njuwuyuxin/CourseGrabber</a></h6><h3 id="使用cookie模拟登录"><a href="#使用cookie模拟登录" class="headerlink" title="使用cookie模拟登录"></a>使用cookie模拟登录</h3><p>在成功实现了基本登陆后，为了方便使用，这里尝试使用cookie进行登录</p>
 <p>首先我们在创建session时，初始cookie为空，可以打印进行查看</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; requests.session()</span><br><span class="line">print(s.cookies.get_dict())</span><br></pre></td></tr></table></figure>
