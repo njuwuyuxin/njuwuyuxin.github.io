@@ -83,22 +83,22 @@
 
 
 
-<meta name="description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber获取选课列表在研究了教务网的js代码以及抓包分析之后，发现教务网拉取专业选课列表的接口接收不同数量的参数（有默认参数）专业选课页面的加载逻辑为，初次进入页面自动发送一条post">
+<meta name="description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber断线重连目前的抢课脚本的一个缺陷在于，当用户挂机进行自动抢课时，如果出现临时网络波动造成短时间断网，会造成抢课过程中断，程序异常退出。而我们希望对于临时的网络中断或网络波动，可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零搭建教务抢课系统（三）">
-<meta property="og:url" content="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+<meta property="og:title" content="从零搭建教务抢课系统（五）">
+<meta property="og:url" content="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/index.html">
 <meta property="og:site_name" content="Mind Walker">
-<meta property="og:description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber获取选课列表在研究了教务网的js代码以及抓包分析之后，发现教务网拉取专业选课列表的接口接收不同数量的参数（有默认参数）专业选课页面的加载逻辑为，初次进入页面自动发送一条post">
+<meta property="og:description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber断线重连目前的抢课脚本的一个缺陷在于，当用户挂机进行自动抢课时，如果出现临时网络波动造成短时间断网，会造成抢课过程中断，程序异常退出。而我们希望对于临时的网络中断或网络波动，可">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/16734657-21ed6aa2ccdb6724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="article:published_time" content="2019-12-27T16:26:23.000Z">
-<meta property="article:modified_time" content="2020-01-13T08:32:39.793Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/16734657-b3edb7589a419553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2020-01-13T10:42:21.000Z">
+<meta property="article:modified_time" content="2020-01-13T10:43:08.237Z">
 <meta property="article:author" content="吴雨昕">
 <meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="抢课系统">
 <meta property="article:tag" content="http">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/16734657-21ed6aa2ccdb6724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/16734657-b3edb7589a419553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="https://njuwuyuxin.github.io/2019/12/28/从零搭建教务抢课系统（三）/"/>
+  <link rel="canonical" href="https://njuwuyuxin.github.io/2020/01/13/从零搭建教务抢课系统（五）/"/>
 
 
 
 
 
-  <title>从零搭建教务抢课系统（三） | Mind Walker</title>
+  <title>从零搭建教务抢课系统（五） | Mind Walker</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴雨昕">
@@ -288,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从零搭建教务抢课系统（三）</h1>
+          <h1 class="post-title" itemprop="name headline">从零搭建教务抢课系统（五）</h1>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-28T00:26:23+08:00">
-                2019-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T18:42:21+08:00">
+                2020-01-13
               </time>
             
 
@@ -362,17 +362,11 @@
       
         <hr>
 <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p><a href="https://njuwuyuxin.github.io/2019/12/26/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/">（一）核心功能：模拟登陆</a><br><a href="https://njuwuyuxin.github.io/2019/12/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/">（二）使用Cookie进行模拟登录</a><br><a href="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/">（三）获取教务网选课列表</a><br><a href="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/">（四）循环选课</a><br>（五）断线重连</p>
-<h6 id="Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><a href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber" class="headerlink" title="Github链接： https://github.com/njuwuyuxin/CourseGrabber"></a>Github链接： <a href="https://github.com/njuwuyuxin/CourseGrabber" target="_blank" rel="noopener">https://github.com/njuwuyuxin/CourseGrabber</a></h6><h3 id="获取选课列表"><a href="#获取选课列表" class="headerlink" title="获取选课列表"></a>获取选课列表</h3><p>在研究了教务网的js代码以及抓包分析之后，发现教务网拉取专业选课列表的接口接收不同数量的参数（有默认参数）<br>专业选课页面的加载逻辑为，初次进入页面自动发送一条post请求，请求体为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#39;method&#39;:&#39;specialityCourseList&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该请求只包含调用的方法名，其余均为默认参数，用来拉取默认显示的课程列表</p>
-<p>当用户在下拉选单中手动选择某项之后，会向同一端口再次发送一条post请求，请求体为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#39;method&#39;:&#39;specialityCourseList&#39;,</span><br><span class="line">  &#39;specialityCode&#39;:&#39;221&#39;,</span><br><span class="line">  &#39;courseGrade&#39;:&#39;2016</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这次请求体中包含了所在专业的专业编号，以及对应年级</p>
-<h4 id="解析网页获得课程列表"><a href="#解析网页获得课程列表" class="headerlink" title="解析网页获得课程列表"></a>解析网页获得课程列表</h4><p>按照请求格式构造好请求体中，response返回的HTML文档就是包含了课程列表的页面<br>这里使用了Beautiful Soup进行解析，可以看到课程列表是以<tr>、 <td>标签的形式进行显示，按对应格式解析即可</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">soup &#x3D; BeautifulSoup(courseList.content,&quot;html.parser&quot;,from_encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">soup &#x3D; BeautifulSoup(courseList.content,&quot;html.parser&quot;,from_encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">trs &#x3D; soup.find_all(&#39;tr&#39;,&#123;&#39;class&#39;:&#39;TABLE_TR_01&#39;&#125;)</span><br><span class="line">print(&quot;序号\t课程号\t\t课程名\t\t\t学分\t学时\t类型\t开课院系&quot;)</span><br><span class="line">for tr in trs:</span><br><span class="line">    tds &#x3D; tr.find_all(&#39;td&#39;)</span><br><span class="line">    courseNo &#x3D; tds[0].find(&#39;a&#39;).find(&#39;u&#39;).string</span><br><span class="line">    if(tds[1].string.__len__()&lt;&#x3D;7):</span><br><span class="line">        print(str(trs.index(tr)+1)+&#39;\t&#39;+courseNo+&#39;\t&#39;+tds[1].string+&#39;\t\t&#39;+tds[2].string+&#39;\t&#39;+tds[3].string+&#39;\t&#39;+tds[4].string+&#39;\t&#39;+tds[6].string)</span><br><span class="line">    else:</span><br><span class="line">        print(str(trs.index(tr)+1)+&#39;\t&#39;+courseNo+&#39;\t&#39;+tds[1].string+&#39;\t&#39;+tds[2].string+&#39;\t&#39;+tds[3].string+&#39;\t&#39;+tds[4].string+&#39;\t&#39;+tds[6].string)</span><br><span class="line">    click_td &#x3D; tr.find(&#39;td&#39;,&#123;&#39;onclick&#39;:True&#125;)</span><br><span class="line">    if click_td&#x3D;&#x3D;None:</span><br><span class="line">        courseIdList.append(&quot;&quot;)</span><br><span class="line">        pass</span><br><span class="line">    else:</span><br><span class="line">        # print(click_td[&#39;onclick&#39;])</span><br><span class="line">        js &#x3D; click_td[&#39;onclick&#39;]</span><br><span class="line">        args &#x3D; js.split(&#39;,&#39;)</span><br><span class="line">        courseID &#x3D; args[4][0:5]</span><br><span class="line">        courseIdList.append(courseID)</span><br></pre></td></tr></table></figure>
-<p>由于教务网后端较为特殊，选课的请求体中课程id有单独编号需要提取，而不是使用课程编号（后文有讲），因此额外做了一些解析，HTML解析这里不具有普遍参考价值.</p>
-<p>获取的课程列表展示如下：<br><img src="https://upload-images.jianshu.io/upload_images/16734657-21ed6aa2ccdb6724.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="课程列表"></p>
-<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://www.crummy.com/software/BeautifulSoup/bs3/documentation.zh.html" target="_blank" rel="noopener">Beautiful Soup4 中文文档</a></p>
+<h6 id="Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><a href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber" class="headerlink" title="Github链接： https://github.com/njuwuyuxin/CourseGrabber"></a>Github链接： <a href="https://github.com/njuwuyuxin/CourseGrabber" target="_blank" rel="noopener">https://github.com/njuwuyuxin/CourseGrabber</a></h6><h3 id="断线重连"><a href="#断线重连" class="headerlink" title="断线重连"></a>断线重连</h3><p>目前的抢课脚本的一个缺陷在于，当用户挂机进行自动抢课时，如果出现临时网络波动造成短时间断网，会造成抢课过程中断，程序异常退出。<br>而我们希望对于临时的网络中断或网络波动，可以自动尝试重连，自动恢复，防止一次临时断网导致程序退出。<br>因此这里为我们的抢课脚本加入了断线重连处理，主要思路为对requests请求失败时抛出的异常进行处理，如果发现了如连接失败或请求超时等情况，自动进行重试。<br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">while True:</span><br><span class="line">    try:</span><br><span class="line">    selectResult &#x3D; session.post(host+&#39;student&#x2F;elective&#x2F;selectCourse.do&#39;,selectCourse_reqdata)</span><br><span class="line">    except requests.exceptions.ConnectionError:</span><br><span class="line">    connectionFailedFlag&#x3D;True</span><br><span class="line">    print(&quot;连接超时，正在尝试重新连接&quot;)</span><br><span class="line">    time.sleep(1)</span><br><span class="line">    else:</span><br><span class="line">        if connectionFailedFlag:</span><br><span class="line">            connectionFailedFlag&#x3D;False</span><br><span class="line">            print(&quot;重连成功，继续为您抢课&quot;)</span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
+<p>使用requests发出的post请求，当请求失败时会返回一个requests.exceptions.ConnectionError类型的异常。我们在外层使用了一个循环，如果请求成功则终止循环，如果接收到异常，则继续进行请求。</p>
+<p>测试时首先启动抢课脚本开始抢课，期间手动断开电脑网络，一段时间后再重新连接网络，检查脚本是否能继续抢课。</p>
+<p>测试结果如下：<br><img src="https://upload-images.jianshu.io/upload_images/16734657-b3edb7589a419553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="测试成功"></p>
 
       
     </div>
@@ -407,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="从零搭建教务抢课系统（二）">
-                <i class="fa fa-chevron-left"></i> 从零搭建教务抢课系统（二）
+              <a href="/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="next" title="从零搭建教务抢课系统（四）">
+                <i class="fa fa-chevron-left"></i> 从零搭建教务抢课系统（四）
               </a>
             
           </div>
@@ -416,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="从零搭建教务抢课系统（四）">
-                从零搭建教务抢课系统（四） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -583,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取选课列表"><span class="nav-number">2.</span> <span class="nav-text">获取选课列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#解析网页获得课程列表"><span class="nav-number">2.1.</span> <span class="nav-text">解析网页获得课程列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">2.2.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断线重连"><span class="nav-number">2.</span> <span class="nav-text">断线重连</span></a></li></ol></div>
             
 
           </div>
