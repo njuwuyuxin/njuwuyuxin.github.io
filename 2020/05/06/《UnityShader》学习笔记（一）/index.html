@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="爬虫,抢课系统,http," />
+  <meta name="keywords" content="Unity,Shader,学习笔记," />
 
 
 
@@ -83,22 +83,20 @@
 
 
 
-<meta name="description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber断线重连目前的抢课脚本的一个缺陷在于，当用户挂机进行自动抢课时，如果出现临时网络波动造成短时间断网，会造成抢课过程中断，程序异常退出。而我们希望对于临时的网络中断或网络波动，可">
+<meta name="description" content="最近在掌握了一些图形学基础后，下定决心要学习一下Shader相关内容，加之平时开发一些游戏Demo基本上基于Unity实现，于是搬出来《Unity Shader 入门精要》开始研读，顺便整理一下笔记加深理解。本文主要是在每章学习后，首先凭印象整理出大致框架和重点概念，之后再参照原文进行校对勘误，如此一来加深了理解同时又能保证知识的准确性。 渲染流水线渲染流水线就是将一幅画面渲染的过程拆分为多个阶">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零搭建教务抢课系统（五）">
-<meta property="og:url" content="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/index.html">
+<meta property="og:title" content="《Unity Shader 入门精要》学习笔记（一）">
+<meta property="og:url" content="https://njuwuyuxin.github.io/2020/05/06/%E3%80%8AUnityShader%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="Mind Walker">
-<meta property="og:description" content="目录（一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber断线重连目前的抢课脚本的一个缺陷在于，当用户挂机进行自动抢课时，如果出现临时网络波动造成短时间断网，会造成抢课过程中断，程序异常退出。而我们希望对于临时的网络中断或网络波动，可">
+<meta property="og:description" content="最近在掌握了一些图形学基础后，下定决心要学习一下Shader相关内容，加之平时开发一些游戏Demo基本上基于Unity实现，于是搬出来《Unity Shader 入门精要》开始研读，顺便整理一下笔记加深理解。本文主要是在每章学习后，首先凭印象整理出大致框架和重点概念，之后再参照原文进行校对勘误，如此一来加深了理解同时又能保证知识的准确性。 渲染流水线渲染流水线就是将一幅画面渲染的过程拆分为多个阶">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/16734657-b3edb7589a419553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="article:published_time" content="2020-01-13T10:42:21.000Z">
-<meta property="article:modified_time" content="2020-05-06T12:25:27.814Z">
+<meta property="article:published_time" content="2020-05-06T12:32:35.000Z">
+<meta property="article:modified_time" content="2020-05-06T12:34:40.735Z">
 <meta property="article:author" content="吴雨昕">
-<meta property="article:tag" content="爬虫">
-<meta property="article:tag" content="抢课系统">
-<meta property="article:tag" content="http">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/16734657-b3edb7589a419553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -128,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://njuwuyuxin.github.io/2020/01/13/从零搭建教务抢课系统（五）/"/>
+  <link rel="canonical" href="https://njuwuyuxin.github.io/2020/05/06/《UnityShader》学习笔记（一）/"/>
 
 
 
 
 
-  <title>从零搭建教务抢课系统（五） | Mind Walker</title>
+  <title>《Unity Shader 入门精要》学习笔记（一） | Mind Walker</title>
   
 
 
@@ -271,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2020/05/06/%E3%80%8AUnityShader%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴雨昕">
@@ -288,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从零搭建教务抢课系统（五）</h1>
+          <h1 class="post-title" itemprop="name headline">《Unity Shader 入门精要》学习笔记（一）</h1>
         
 
         <div class="post-meta">
@@ -300,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-13T18:42:21+08:00">
-                2020-01-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T20:32:35+08:00">
+                2020-05-06
               </time>
             
 
@@ -323,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%80%E5%8D%95%E5%B0%9D%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">简单尝试</span>
+                  <a href="/categories/UnityShader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityShader学习笔记</span>
                   </a>
                 </span>
 
@@ -361,12 +359,27 @@
 
       
         <hr>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p><a href="https://njuwuyuxin.github.io/2019/12/26/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/">（一）核心功能：模拟登陆</a><br><a href="https://njuwuyuxin.github.io/2019/12/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/">（二）使用Cookie进行模拟登录</a><br><a href="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/">（三）获取教务网选课列表</a><br><a href="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/">（四）循环选课</a><br><a href="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/">（五）断线重连</a></p>
-<h6 id="Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><a href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber" class="headerlink" title="Github链接： https://github.com/njuwuyuxin/CourseGrabber"></a>Github链接： <a href="https://github.com/njuwuyuxin/CourseGrabber" target="_blank" rel="noopener">https://github.com/njuwuyuxin/CourseGrabber</a></h6><h3 id="断线重连"><a href="#断线重连" class="headerlink" title="断线重连"></a>断线重连</h3><p>目前的抢课脚本的一个缺陷在于，当用户挂机进行自动抢课时，如果出现临时网络波动造成短时间断网，会造成抢课过程中断，程序异常退出。<br>而我们希望对于临时的网络中断或网络波动，可以自动尝试重连，自动恢复，防止一次临时断网导致程序退出。<br>因此这里为我们的抢课脚本加入了断线重连处理，主要思路为对requests请求失败时抛出的异常进行处理，如果发现了如连接失败或请求超时等情况，自动进行重试。<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">while True:</span><br><span class="line">    try:</span><br><span class="line">    selectResult &#x3D; session.post(host+&#39;student&#x2F;elective&#x2F;selectCourse.do&#39;,selectCourse_reqdata)</span><br><span class="line">    except requests.exceptions.ConnectionError:</span><br><span class="line">    connectionFailedFlag&#x3D;True</span><br><span class="line">    print(&quot;连接超时，正在尝试重新连接&quot;)</span><br><span class="line">    time.sleep(1)</span><br><span class="line">    else:</span><br><span class="line">        if connectionFailedFlag:</span><br><span class="line">            connectionFailedFlag&#x3D;False</span><br><span class="line">            print(&quot;重连成功，继续为您抢课&quot;)</span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
-<p>使用requests发出的post请求，当请求失败时会返回一个requests.exceptions.ConnectionError类型的异常。我们在外层使用了一个循环，如果请求成功则终止循环，如果接收到异常，则继续进行请求。</p>
-<p>测试时首先启动抢课脚本开始抢课，期间手动断开电脑网络，一段时间后再重新连接网络，检查脚本是否能继续抢课。</p>
-<p>测试结果如下：<br><img src="https://upload-images.jianshu.io/upload_images/16734657-b3edb7589a419553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="测试成功"></p>
+<p>最近在掌握了一些图形学基础后，下定决心要学习一下Shader相关内容，加之平时开发一些游戏Demo基本上基于Unity实现，于是搬出来《Unity Shader 入门精要》开始研读，顺便整理一下笔记加深理解。<br>本文主要是在每章学习后，首先凭印象整理出大致框架和重点概念，之后再参照原文进行校对勘误，如此一来加深了理解同时又能保证知识的准确性。</p>
+<h2 id="渲染流水线"><a href="#渲染流水线" class="headerlink" title="渲染流水线"></a>渲染流水线</h2><p>渲染流水线就是将一幅画面渲染的过程拆分为多个阶段，每个阶段执行各自功能同时可以并行计算以提高速度。由于采用了流水线模式，因此整个渲染过程的耗时基本上取决于整条流水线中速度最慢的步骤。</p>
+<p>概念上的渲染流水线主要分为三个阶段：应用阶段、几何阶段、光栅化阶段<br>他们只是从概念上将渲染流水线划分为三个主要步骤，实际GPU的流水线步骤会更加细化。</p>
+<h4 id="应用阶段"><a href="#应用阶段" class="headerlink" title="应用阶段"></a>应用阶段</h4><p>应用阶段是用户可编程程度最高的步骤，通常是由CPU负责的部分。这个阶段主要任务是：</p>
+<ol>
+<li>准备好场景数据（包括需要渲染的物体、摄像机角度等）</li>
+<li>进行粗粒度的剔除（剔除被遮挡的物体，与光栅化阶段有所不同）</li>
+<li>设置每个模型的渲染状态（包括使用的材质、纹理、shader等）</li>
+</ol>
+<p>该阶段的最终输出就是渲染所需的几何信息，即渲染图元，重点是三维信息！</p>
+<h4 id="几何阶段"><a href="#几何阶段" class="headerlink" title="几何阶段"></a>几何阶段</h4><p>几何阶段的主要工作是将上一步的渲染图元进行逐顶点、逐边的操作。<br>通俗来说就是决定需要绘制的图元是什么，绘制在什么位置，如何绘制等等。</p>
+<p>这里的遮挡计算与应用阶段不同，应用阶段进行的是粗粒度的剔除，即完全被遮挡的物体会直接被剔除，以减少之后几何阶段的计算等。而几何阶段则需要计算各图元之间的部分遮挡，即一个图元哪些部分被遮挡不需绘制，哪些部分未被遮挡需要绘制。</p>
+<p>其中最重要的一项工作就是将顶点坐标转换到屏幕空间中。<br>该阶段通常在GPU上进行，最终输出是屏幕空间的二维顶点坐标、每个顶点的相关信息等，重点是二维信息！</p>
+<h4 id="光栅化阶段"><a href="#光栅化阶段" class="headerlink" title="光栅化阶段"></a>光栅化阶段</h4><p>光栅化阶段主要使用上一阶段提供的数据来产生屏幕上的像素。<br>这个阶段的主要任务是决定每个渲染图元中的哪些像素需要被绘制出来，这里需要用到上阶段提供的逐顶点信息，进行插值，进行逐像素的处理。</p>
+<h2 id="CPU与GPU的通信"><a href="#CPU与GPU的通信" class="headerlink" title="CPU与GPU的通信"></a>CPU与GPU的通信</h2><p>通过上面我们了解到渲染流水线的开始是应用阶段，而应用阶段主要是由CPU进行，因此整个渲染过程也是由CPU发起，之后交由GPU进行处理。主要分为三个阶段：</p>
+<ol>
+<li>加载数据至显存（硬盘-&gt;内存-&gt;显存）</li>
+<li>设置渲染状态（使用的材质、纹理、shader等）</li>
+<li>发起DrawCall，告诉GPU已经准备好渲染所需信息，可以开始工作啦</li>
+</ol>
+<p>下一节主要整理关于GPU流水线的主要步骤和重点功能。</p>
 
       
     </div>
@@ -384,11 +397,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
           
-            <a href="/tags/%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F/" rel="tag"># 抢课系统</a>
+            <a href="/tags/Shader/" rel="tag"># Shader</a>
           
-            <a href="/tags/http/" rel="tag"># http</a>
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
           
         </div>
       
@@ -401,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="next" title="从零搭建教务抢课系统（四）">
-                <i class="fa fa-chevron-left"></i> 从零搭建教务抢课系统（四）
+              <a href="/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/" rel="next" title="从零搭建教务抢课系统（五）">
+                <i class="fa fa-chevron-left"></i> 从零搭建教务抢课系统（五）
               </a>
             
           </div>
@@ -410,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/06/%E3%80%8AUnityShader%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="《Unity Shader 入门精要》学习笔记（一）">
-                《Unity Shader 入门精要》学习笔记（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#断线重连"><span class="nav-number">2.</span> <span class="nav-text">断线重连</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染流水线"><span class="nav-number">1.</span> <span class="nav-text">渲染流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用阶段"><span class="nav-number">1.0.1.</span> <span class="nav-text">应用阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何阶段"><span class="nav-number">1.0.2.</span> <span class="nav-text">几何阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#光栅化阶段"><span class="nav-number">1.0.3.</span> <span class="nav-text">光栅化阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU与GPU的通信"><span class="nav-number">2.</span> <span class="nav-text">CPU与GPU的通信</span></a></li></ol></div>
             
 
           </div>
