@@ -47,6 +47,36 @@
   </entry>
   
   <entry>
+    <title>《Unity Shader 入门精要》学习笔记（二）—— GPU流水线</title>
+    <link href="https://njuwuyuxin.github.io/2020/05/06/%E3%80%8AUnityShader%E5%85%A5%E9%97%A8%E7%B2%BE%E8%A6%81%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94GPU%E6%B5%81%E6%B0%B4%E7%BA%BF/"/>
+    <id>https://njuwuyuxin.github.io/2020/05/06/《UnityShader入门精要》学习笔记（二）——GPU流水线/</id>
+    <published>2020-05-06T12:22:21.000Z</published>
+    <updated>2020-05-07T12:24:16.395Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h2 id="GPU流水线"><a href="#GPU流水线" class="headerlink" title="GPU流水线"></a>GPU流水线</h2><p>GPU流水线的大致流程和步骤如下图所示<br><img src="https://upload-images.jianshu.io/upload_images/5633236-a8b9670d9900afe0.png" alt="GPU流水线"><br>其中深灰色的步骤为可编程的，浅色步骤不可编程但可配置，灰色步骤不可编程也不可配置。下面简单介绍每个步骤的基本任务。</p><h3 id="几何阶段"><a href="#几何阶段" class="headerlink" title="几何阶段"></a>几何阶段</h3><h4 id="顶点着色器"><a href="#顶点着色器" class="headerlink" title="顶点着色器"></a>顶点着色器</h4><p>顶点着色器步骤的功能仅仅是对上一阶段CPU输出的顶点信息进行坐标变换以及计算顶点颜色光照等。这里的各顶点信息都是完全独立的，并且无法获取顶点之间的关系，因此可以被GPU并行计算，效率较高。</p><p>这里的坐标变换指的是：从模型空间坐标变换到齐次剪裁坐标（均为三维空间）</p><h4 id="曲面细分着色器"><a href="#曲面细分着色器" class="headerlink" title="曲面细分着色器"></a>曲面细分着色器</h4><p>一个可选的着色器，用于细分图元。</p><h4 id="几何着色器"><a href="#几何着色器" class="headerlink" title="几何着色器"></a>几何着色器</h4><p>一个可选的着色器，用于逐图元进行着色。</p><h4 id="裁剪"><a href="#裁剪" class="headerlink" title="裁剪"></a>裁剪</h4><p>一个非常重要的步骤，用于将每个图元在摄像机视野外的部分裁剪掉。完全不在视野内的图元会直接被舍弃掉不传递给下一阶段，完全在视野内的图元会直接传递给下一阶段。因此裁剪主要针对一部分在摄像机视野内，另一部分在视野外的图元。</p><h4 id="屏幕映射"><a href="#屏幕映射" class="headerlink" title="屏幕映射"></a>屏幕映射</h4><p>屏幕映射阶段主要工作为：将之前得到的顶点的坐标映射到屏幕坐标系中，即完成从三维空间向二维平面的投影。<br>注意：OpenGL和DirectX的屏幕坐标有所差异，OpenGL的原点在左下角，DirectX的原点在左上角。</p><h3 id="光栅化阶段"><a href="#光栅化阶段" class="headerlink" title="光栅化阶段"></a>光栅化阶段</h3><h4 id="三角形设置"><a href="#三角形设置" class="headerlink" title="三角形设置"></a>三角形设置</h4><p>在几何阶段，我们得到了一系列在屏幕坐标系中的顶点坐标。而一个三角形由三个顶点组成，因此我们需要通过这些顶点坐标，计算出每个三角形图元具体覆盖了哪些像素，这个过程就叫做 三角形设置。<br>三角形设置就是计算每个三角形边界的表示方式，为下一阶段做准备。</p><h4 id="三角形遍历"><a href="#三角形遍历" class="headerlink" title="三角形遍历"></a>三角形遍历</h4><p>在得到了一系列三角形网格的表示数据后，我们需要判断屏幕上的每个像素，是否被某一个三角形网格所覆盖，因此对于每个像素都需要对所有三角形网格进行遍历。如果一个像素被覆盖，那么会通过插值等方式计算出他的片元信息。<br>注意：这里的“片元”并不等同于“像素”，片元所包含的信息更加丰富（包括他的坐标、深度信息、顶点信息等等），这些信息用来最终生成一个像素的颜色。<br>三角形遍历阶段的最终输出就是一个片元序列，用于下一阶段的片元着色器。</p><h4 id="片元着色器"><a href="#片元着色器" class="headerlink" title="片元着色器"></a>片元着色器</h4><p>我们知道片元是用来最终生成一个像素所需的前置数据结构，这个由片元生成像素的过程，就是交由片元着色器完成的。这个过程是可以高度编程的，我们所能够实现的大部分效果，也都是在这一步进行的。片元着色器的最终输出是每个片元的一个或多个颜色值。在这里仍然没有得到最终的像素，但已经得到了每个片元的颜色信息，在下一步中，我们会得到每个像素的最终颜色值。</p><h4 id="逐片元操作"><a href="#逐片元操作" class="headerlink" title="逐片元操作"></a>逐片元操作</h4><p>逐片元操作的工作主要有两个：</p><ol><li>可见性测试</li><li>合并</li></ol><p>先说第一点，上面得到的片元信息中包括了每个片元的深度信息，这可以帮我们判断每个片元之间的覆盖情况，没有通过深度测试的片元意味着被其他片元所遮挡，因此会被舍弃。可见性测试不仅仅是深度测试，还包括模板测试等一系列其他测试，只有通过了可见性测试的片元才能进入接下来的合并阶段。</p><p>合并阶段相对而言容易理解，因为我们在渲染每一帧画面时遵照的顺序是依次渲染每一个三角形图元，因此为了生成一幅完整的画面，我们需要将当前渲染的三角形与之前已渲染的部分画面进行合并，最终得到一幅完整的画面。这个阶段也是可以高度配置的，我们可以指定合并的具体规则，从而实现包括透明之类的效果。</p><p>在整个阶段完成后，我们终于将片元信息转化为了每个像素的颜色值，最终生成了一幅画面。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;hr&gt;
+&lt;h2 id=&quot;GPU流水线&quot;&gt;&lt;a href=&quot;#GPU流水线&quot; class=&quot;headerlink&quot; title=&quot;GPU流水线&quot;&gt;&lt;/a&gt;GPU流水线&lt;/h2&gt;&lt;p&gt;GPU流水线的大致流程和步骤如下图所示&lt;br&gt;&lt;img src=&quot;https://upload-i
+      
+    
+    </summary>
+    
+      <category term="UnityShader学习笔记" scheme="https://njuwuyuxin.github.io/categories/UnityShader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Unity" scheme="https://njuwuyuxin.github.io/tags/Unity/"/>
+    
+      <category term="Shader" scheme="https://njuwuyuxin.github.io/tags/Shader/"/>
+    
+      <category term="学习笔记" scheme="https://njuwuyuxin.github.io/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>从零搭建教务抢课系统（五）</title>
     <link href="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <id>https://njuwuyuxin.github.io/2020/01/13/从零搭建教务抢课系统（五）/</id>
