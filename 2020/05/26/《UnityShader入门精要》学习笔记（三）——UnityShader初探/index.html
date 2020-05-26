@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="爬虫,抢课系统,http," />
+  <meta name="keywords" content="Unity,Shader,学习笔记," />
 
 
 
@@ -83,19 +83,19 @@
 
 
 
-<meta name="description" content="目录 （一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber循环选课在成功实现了登陆系统，拉取课程列表之后，我们离成功只差最后一步，只需要模拟浏览器，向对应端口发送选课请求即可。手动在网页上选择任意一门课之后发现，选课请求体结构非常简单">
+<meta name="description" content="何为Unity Shader在传统的开发模式中，开发者如果想要设置自定义的渲染模式，需要和大量文件和设置打交道（包括编写顶点着色器、片元着色器、选择图形API、加载资源到GPU等等），非常繁琐复杂。Unity Shader就是在此之上的更高级的一层封装，开发者只需要在Shader Lab中编写Unity Shader文件，即可交由Unity引擎实现自定义渲染效果。因此Unity Shader与传">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零搭建教务抢课系统（四）">
-<meta property="og:url" content="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:title" content="《UnityShader入门精要》学习笔记（三）——UnityShader初探">
+<meta property="og:url" content="https://njuwuyuxin.github.io/2020/05/26/%E3%80%8AUnityShader%E5%85%A5%E9%97%A8%E7%B2%BE%E8%A6%81%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94UnityShader%E5%88%9D%E6%8E%A2/index.html">
 <meta property="og:site_name" content="Mind Walker">
-<meta property="og:description" content="目录 （一）核心功能：模拟登陆（二）使用Cookie进行模拟登录（三）获取教务网选课列表（四）循环选课（五）断线重连 Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber循环选课在成功实现了登陆系统，拉取课程列表之后，我们离成功只差最后一步，只需要模拟浏览器，向对应端口发送选课请求即可。手动在网页上选择任意一门课之后发现，选课请求体结构非常简单">
+<meta property="og:description" content="何为Unity Shader在传统的开发模式中，开发者如果想要设置自定义的渲染模式，需要和大量文件和设置打交道（包括编写顶点着色器、片元着色器、选择图形API、加载资源到GPU等等），非常繁琐复杂。Unity Shader就是在此之上的更高级的一层封装，开发者只需要在Shader Lab中编写Unity Shader文件，即可交由Unity引擎实现自定义渲染效果。因此Unity Shader与传">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-12-29T06:17:18.000Z">
-<meta property="article:modified_time" content="2020-05-06T12:25:27.814Z">
+<meta property="article:published_time" content="2020-05-26T14:33:35.000Z">
+<meta property="article:modified_time" content="2020-05-26T14:39:38.444Z">
 <meta property="article:author" content="吴雨昕">
-<meta property="article:tag" content="爬虫">
-<meta property="article:tag" content="抢课系统">
-<meta property="article:tag" content="http">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 
 
@@ -126,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://njuwuyuxin.github.io/2019/12/29/从零搭建教务抢课系统（四）/"/>
+  <link rel="canonical" href="https://njuwuyuxin.github.io/2020/05/26/《UnityShader入门精要》学习笔记（三）——UnityShader初探/"/>
 
 
 
 
 
-  <title>从零搭建教务抢课系统（四） | Mind Walker</title>
+  <title>《UnityShader入门精要》学习笔记（三）——UnityShader初探 | Mind Walker</title>
   
 
 
@@ -269,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://njuwuyuxin.github.io/2020/05/26/%E3%80%8AUnityShader%E5%85%A5%E9%97%A8%E7%B2%BE%E8%A6%81%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94UnityShader%E5%88%9D%E6%8E%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴雨昕">
@@ -286,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从零搭建教务抢课系统（四）</h1>
+          <h1 class="post-title" itemprop="name headline">《UnityShader入门精要》学习笔记（三）——UnityShader初探</h1>
         
 
         <div class="post-meta">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-29T14:17:18+08:00">
-                2019-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-26T22:33:35+08:00">
+                2020-05-26
               </time>
             
 
@@ -321,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%80%E5%8D%95%E5%B0%9D%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">简单尝试</span>
+                  <a href="/categories/UnityShader%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">UnityShader学习笔记</span>
                   </a>
                 </span>
 
@@ -358,23 +358,37 @@
       
 
       
-        <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><hr>
-<p><a href="https://njuwuyuxin.github.io/2019/12/26/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/">（一）核心功能：模拟登陆</a><br><a href="https://njuwuyuxin.github.io/2019/12/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/">（二）使用Cookie进行模拟登录</a><br><a href="https://njuwuyuxin.github.io/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/">（三）获取教务网选课列表</a><br><a href="https://njuwuyuxin.github.io/2019/12/29/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E5%9B%9B%EF%BC%89/">（四）循环选课</a><br><a href="https://njuwuyuxin.github.io/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/">（五）断线重连</a></p>
-<h6 id="Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><a href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber" class="headerlink" title="Github链接： https://github.com/njuwuyuxin/CourseGrabber"></a>Github链接： <a href="https://github.com/njuwuyuxin/CourseGrabber" target="_blank" rel="noopener">https://github.com/njuwuyuxin/CourseGrabber</a></h6><h3 id="循环选课"><a href="#循环选课" class="headerlink" title="循环选课"></a>循环选课</h3><p>在成功实现了登陆系统，拉取课程列表之后，我们离成功只差最后一步，只需要模拟浏览器，向对应端口发送选课请求即可。<br>手动在网页上选择任意一门课之后发现，选课请求体结构非常简单，同样为Post请求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &#39;method&#39;:&#39;addSpecialitySelect&#39;,</span><br><span class="line">  &#39;classId&#39;:&#39;xxxx&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里的classID就是上一篇中提到的后台为每个课程标记的ID，并不是大家平时使用的课程号。好在上一篇中，我们已经对每门课的序号和课程ID进行了映射。</p>
-<p>基本思路理清后，代码的部分就相对非常简单。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">def GrabCourse(courseID,interval&#x3D;0):</span><br><span class="line">    while(True):</span><br><span class="line">        selectCourse_reqdata&#x3D;&#123;&#125;</span><br><span class="line">        selectCourse_reqdata[&#39;method&#39;]&#x3D;&quot;addSpecialitySelect&quot;</span><br><span class="line">        selectCourse_reqdata[&#39;classId&#39;]&#x3D;str(courseID)</span><br><span class="line">        selectResult &#x3D; s.post(host+&#39;student&#x2F;elective&#x2F;selectCourse.do&#39;,selectCourse_reqdata)</span><br><span class="line">        soup &#x3D; BeautifulSoup(selectResult.content,&quot;html.parser&quot;,from_encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">        for tag in soup.find_all(&#39;div&#39;):</span><br><span class="line">            if tag.get(&#39;id&#39;)&#x3D;&#x3D;&quot;successMsg&quot;:</span><br><span class="line">                print(&quot;抢课成功！&quot;)</span><br><span class="line">                return</span><br><span class="line">            elif tag.get(&#39;id&#39;)&#x3D;&#x3D;&quot;errMsg&quot;:   </span><br><span class="line">                if tag.string.find(&quot;已经&quot;)!&#x3D;-1:</span><br><span class="line">                    print(&quot;您已经抢到该课程啦~&quot;)</span><br><span class="line">                    exit()</span><br><span class="line">                elif tag.string.find(&quot;错误&quot;)!&#x3D;-1:</span><br><span class="line">                    print(&quot;出现错误，添加失败&quot;)</span><br><span class="line">                    exit()</span><br><span class="line">                else:</span><br><span class="line">                    print(&quot;当前班级已满，仍在为您持续抢课&quot;)</span><br><span class="line">            else:</span><br><span class="line">                pass</span><br><span class="line">        if interval!&#x3D;0:</span><br><span class="line">            time.sleep(interval)</span><br></pre></td></tr></table></figure>
-<p>这里的GrabCourse函数接收两个参数，第一个就是课程ID，第二个为一个可调的时间间隔。为了避免对教务系统造成过大负担（防止被查水表），这里默认设置了每次发送选课请求的时间间隔为1秒。</p>
-<p>同时对每次选课请求的返回进行一下检验，主要分为四种情况：</p>
-<ol>
-<li>选课成功：理想情况</li>
-<li>已经选课：证明课表这已经选中这门课</li>
-<li>班级已满：抢课系统主要针对的正是这种情况，班级满时需要循环发送请求，等待班级空出位置的瞬间。</li>
-<li>出现错误：多为课程ID填写错误，或者选择了其他院系专业课（没有选课权限）等情况</li>
-</ol>
-<p>对每种情况分别处理即可</p>
-<h3 id="其他尝试"><a href="#其他尝试" class="headerlink" title="其他尝试"></a>其他尝试</h3><p>由于之前拉取课程列表时，尝试通过填写其他院系编号来构造请求体，成功拉取到了其他院系的课表，可知教务系统后端对院系方面审核并不十分严格。因此在选课阶段同样进行了类似的尝试（作死），方法同样是在构造选课请求时，填写其他院系课程的课程ID<br>结果：返回“出现错误，添加失败”（笑）<br>可见教务平台至少在选课的时候还是稍微做了一下身份验证。不过至此，整个抢课系统的基本功能已经实现。可以成功登录、获取列表、循环发送选课请求。接下来的工作就是优化人机交互以及断线重连相关功能。</p>
+        <hr>
+<h2 id="何为Unity-Shader"><a href="#何为Unity-Shader" class="headerlink" title="何为Unity Shader"></a>何为Unity Shader</h2><p>在传统的开发模式中，开发者如果想要设置自定义的渲染模式，需要和大量文件和设置打交道（包括编写顶点着色器、片元着色器、选择图形API、加载资源到GPU等等），非常繁琐复杂。Unity Shader就是在此之上的更高级的一层封装，开发者只需要在Shader Lab中编写Unity Shader文件，即可交由Unity引擎实现自定义渲染效果。<br>因此Unity Shader与传统的Shader有所不同，它定义的是要显示一个材质的所有东西，<strong>而不仅仅是着色器代码</strong>。</p>
+<p>而在使用Unity Shader时，我们首先需要创建一个材质，将编写的Unity Shader文件挂载到该材质上，之后再为各个物体应用该材质。由此可以看出，Unity Shader是与材质牢牢绑定的。</p>
+<h2 id="Unity-Shader文件基本结构"><a href="#Unity-Shader文件基本结构" class="headerlink" title="Unity Shader文件基本结构"></a>Unity Shader文件基本结构</h2><p>一个UnityShader的基本文件结构大致如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Shader &quot;ShaderName&quot;&#123;</span><br><span class="line">  Properties&#123;</span><br><span class="line">    &#x2F;&#x2F;相关属性</span><br><span class="line">  &#125;</span><br><span class="line">  SubShader&#123;</span><br><span class="line">  &#x2F;&#x2F;显卡A使用的子着色器</span><br><span class="line">  &#125;</span><br><span class="line">  SubShader&#123;</span><br><span class="line">  &#x2F;&#x2F;显卡B使用的子着色器</span><br><span class="line">  &#125;</span><br><span class="line">  Fallback &quot;VertexLit&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个完整的Unity Shader包括shader名 ShaderName、shader包含的属性Properties、使用的子着色器SubShader、以及无法调用任何子着色器时执行的Fallback</p>
+<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><p>Properties定义了一系列属性，这些属性将会出现在材质面板中，Properties语句块的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Properties&#123;</span><br><span class="line">  Name(&quot;display name&quot;,PropertyType) &#x3D; DefaultValue</span><br><span class="line">  Name(&quot;display name&quot;,PropertyType) &#x3D; DefaultValue</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Name为属性名，可以在后续代码中使用，<strong>一般以下划线开头</strong></li>
+<li>display name指的是在材质面板中显示的名称</li>
+<li>PropertyType为属性类型</li>
+<li>DefaultValue为属性的默认值，第一次为某个材质应用该Shader时就会使用该默认值</li>
+</ul>
+<p>在properties声明变量后，我们还需要在cg代码中定义变量来进行使用。<br>需要注意的是，即使我们不在properties中声明变量，我们也可以通过脚本的方式向shader传递变量的值，因此properties块的功能仅仅是为了让对应属性出现在材质面板中。</p>
+<h4 id="SubShader"><a href="#SubShader" class="headerlink" title="SubShader"></a>SubShader</h4><p>SubShader主要包含这样几个部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SubShader&#123;</span><br><span class="line">  [Tags]</span><br><span class="line">  [RenderSetup]</span><br><span class="line">  Pass&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其中 标签是一系列“键值对”，用来进行和渲染引擎的“沟通”，告知其应该怎样、何时渲染这个对象</li>
+<li>渲染设置是用来设置显卡渲染时的一些选项，如是否开启混合等</li>
+<li>Pass是最重要的语句块，可以有多个，每个Pass在渲染流程中执行一次，但是为了避免多个pass造成性能下降，我们应该尽可能用最少的Pass实现渲染功能。</li>
+</ul>
+<p>对于每个Pass，结构类似SubShader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Pass&#123;</span><br><span class="line">  [name]</span><br><span class="line">  [Tags]</span><br><span class="line">  [RenderSetup]</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>名称：可以设置Pass的名称，这样我们在其他SubShader中，可以通过UsePass来使用其他Shader中定义的Pass，实现代码复用（需要指明路径）。注意，Unity会自动将Pass的名称转换为全大写字母</li>
+<li>标签：其中Pass可以使用的标签和SubShader略有不同</li>
+<li>渲染设置：和SubShader一致。如果我们在SubShader中进行设置，则会应用于所有Pass。如果不想这样，可以分别为每个Pass设置不同的RenderSetup</li>
+</ul>
+<p>一个UnityShader文件中可以包含多个SubShader，主要用来实现不同显卡上的兼容性，如果第一个SubShader中的某些指令显卡不支持，则会使用下面的SubShader，以此类推。如果没有一个SubShader兼容，则会使用Fallback</p>
+<h4 id="Fallback"><a href="#Fallback" class="headerlink" title="Fallback"></a>Fallback</h4><p>Fallback可以认为是所有SubShader都无法使用时最迫不得已的选项，是最基础的渲染。当然也可以手动关闭，意味着如果没有SubShader支持，我们就不去管他。</p>
 
       
     </div>
@@ -392,11 +406,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+            <a href="/tags/Unity/" rel="tag"># Unity</a>
           
-            <a href="/tags/%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F/" rel="tag"># 抢课系统</a>
+            <a href="/tags/Shader/" rel="tag"># Shader</a>
           
-            <a href="/tags/http/" rel="tag"># http</a>
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
           
         </div>
       
@@ -409,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/28/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/" rel="next" title="从零搭建教务抢课系统（三）">
-                <i class="fa fa-chevron-left"></i> 从零搭建教务抢课系统（三）
+              <a href="/2020/05/07/%E3%80%8AUnityShader%E5%85%A5%E9%97%A8%E7%B2%BE%E8%A6%81%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94GPU%E6%B5%81%E6%B0%B4%E7%BA%BF/" rel="next" title="《Unity Shader 入门精要》学习笔记（二）—— GPU流水线">
+                <i class="fa fa-chevron-left"></i> 《Unity Shader 入门精要》学习笔记（二）—— GPU流水线
               </a>
             
           </div>
@@ -418,10 +432,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/13/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%95%99%E5%8A%A1%E6%8A%A2%E8%AF%BE%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%94%EF%BC%89/" rel="prev" title="从零搭建教务抢课系统（五）">
-                从零搭建教务抢课系统（五） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Github链接：-https-github-com-njuwuyuxin-CourseGrabber"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Github链接： https:&#x2F;&#x2F;github.com&#x2F;njuwuyuxin&#x2F;CourseGrabber</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环选课"><span class="nav-number">2.</span> <span class="nav-text">循环选课</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他尝试"><span class="nav-number">3.</span> <span class="nav-text">其他尝试</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#何为Unity-Shader"><span class="nav-number">1.</span> <span class="nav-text">何为Unity Shader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unity-Shader文件基本结构"><span class="nav-number">2.</span> <span class="nav-text">Unity Shader文件基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties"><span class="nav-number">2.0.1.</span> <span class="nav-text">Properties</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SubShader"><span class="nav-number">2.0.2.</span> <span class="nav-text">SubShader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fallback"><span class="nav-number">2.0.3.</span> <span class="nav-text">Fallback</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
